@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year, My Love!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #000428, #004e92);
+            color: white;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out 1s forwards;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #fff;
+        }
+        
+        .message {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .typing {
+            border-right: 2px solid white;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: white; }
+        }
+        
+        /* Fireworks animation */
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            animation: explode 2s infinite;
+        }
+        
+        @keyframes explode {
+            0% { transform: scale(0); opacity: 1; }
+            50% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy New Year, My Love!</h1>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        // Typing effect for the message
+        const messageText = `
+            As the clock strikes midnight and a new year begins, I want you to know how deeply I cherish you. 
+            Your smile lights up my world like the first fireworks of the night, and your love fills my heart with warmth and joy. 
+            This year, I promise to be by your side, caring for you, loving you unconditionally, and creating memories that sparkle brighter than any star. 
+            You're my everything, my dream come true, and I can't wait to celebrate this new chapter together. 
+            Happy New Year, my beautiful girlfriend. I love you more than words can say. 💖
+        `;
+        
+        let index = 0;
+        const messageElement = document.getElementById('message');
+        
+        function typeWriter() {
+            if (index < messageText.length) {
+                messageElement.innerHTML += messageText.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50); // Adjust speed here
+            } else {
+                messageElement.classList.remove('typing');
+            }
+        }
+        
+        // Start typing after a short delay
+        setTimeout(() => {
+            messageElement.classList.add('typing');
+            typeWriter();
+        }, 2000);
+        
+        // Add random fireworks
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.top = Math.random() * 100 + '%';
+            firework.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(firework);
+            
+            setTimeout(() => {
+                firework.remove();
+            }, 2000);
+        }
+        
+        // Generate fireworks every few seconds
+        setInterval(createFirework, 500);
+    </script>
+</body>
+</html>
